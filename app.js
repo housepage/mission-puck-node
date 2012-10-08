@@ -68,7 +68,7 @@ var sequelize = new Sequelize(database_name, database_username, database_passwor
 
 var models = {
   User : sequelize.define('User', {
-    
+    vegetarian: { 'type': Sequelize.BOOLEAN , 'defaultValue': true }
   }),
   FacebookUser: sequelize.define('FacebookUser', {
     facebook_id: Sequelize.INTEGER,
