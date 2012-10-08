@@ -101,25 +101,25 @@ var nextUserId = 0;
 
 function addUser (source, sourceUser) {
   var user, facebook;
-
-  user = models.User.build({});
-  user.vegetarian = true;
-  user.save()
-    .success(function() { console.log("Success"); })
-    .error(function(error) { console.log(error); });
-  console.log("Source User: " + Object.keys(sourceUser));
-
+  
   sourceUser.facebook_id = sourceUser.id;
   facebook = models.FacebookUser.build();
   facebook.facebook_id = sourceUser.id;
   facebook.first_name = sourceUser.first_name
   facebook.last_name = sourceUser.last_name
   facebook.name = sourceUser.name
-  facebook.setUser(user);
-  facebook.save()
-    .success(function() {})
-    .error(function() {});
 
+  user = models.User.build({});
+  user.vegetarian = true;
+  user.save()
+    .success(function() {
+      facebook.setUser(user);
+      facebook.save()
+        .success(function() {})
+        .error(function() {});
+     })
+    .error(function(error) { console.log(error); });
+  
   return user;
 }
 
