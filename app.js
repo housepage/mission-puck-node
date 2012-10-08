@@ -148,16 +148,16 @@ everyauth.facebook
     console.log(res);
   })
   .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
+    var facebook_user;
     models.FacebookUser.find({ where: { facebook_id: fbUserMetadata.id }}).success(function(user) {
-      if(user != undefined) {
-        return user.user;
-      } else {
-        return addUser('facebook', fbUserMetadata);
-      }
-    }).error(function(error) {
-      console.log("Error find existing user");
-      return addUser('facebook', fbUserMetadata);
+      facebook_user = user;
     });
+
+    if(facebook_user != undefined) {
+      return facebook_user.user;
+    } else {
+      return addUser('facebook', fbUserMetadata);
+    }
   })
   .redirectPath('/');
 
