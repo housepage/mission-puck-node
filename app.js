@@ -105,7 +105,7 @@ function addUser (source, sourceUser) {
   sourceUser.facebook_id = sourceUser.id;
   delete sourceUser['id'];
   facebook = models.FacebookUser.create(sourceUser);
-  facebook.setUser(user);
+  facebook.setUsers([user]);
 
   return user;
 }
