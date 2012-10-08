@@ -130,7 +130,7 @@ function addUser (source, sourceUser) {
 everyauth.everymodule
   .findUserById( function (id, callback) {
     var user = models.User.find({ where: { id: id }})[0]; 
-    callback(null, usersById[id]);
+    callback(null, user);
   });
 
 var usersByFbId = {};
