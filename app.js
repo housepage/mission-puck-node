@@ -141,6 +141,7 @@ everyauth.facebook
       return facebook_user.user;
     } else {
       return addUser('facebook', fbUserMetadata);
+    }
   })
   .redirectPath('/');
 
