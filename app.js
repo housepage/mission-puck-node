@@ -148,9 +148,9 @@ everyauth.facebook
     console.log(res);
   })
   .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
-    var facebook_user = models.FacebookUser.find({ where: { facebook_id: fbUserMetadata.id }})[0]; 
+    var facebook_user = models.FacebookUser.find({ where: { facebook_id: fbUserMetadata.id }}); 
 
-    console.log("Facebook User: " + facebook_user);
+    console.log("Facebook User: " + facebook_user + fbUserMetadata);
 
     if(facebook_user != undefined) {
       return facebook_user.user;
