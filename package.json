@@ -10,7 +10,8 @@
     "express": "latest",
     "ejs": "*",
     "stylus": "*",
-    "everyauth":"*"
+    "everyauth":"*",
+    "sequelize":"*"
   },
   "engines": {
     "node": "0.8.x",

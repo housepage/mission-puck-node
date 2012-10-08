@@ -21,6 +21,8 @@ var database_username = connection_parts[1],
     database_port = connection_parts[4],
     database_name = connection_parts[5]; 
 
+var Sequelize = require("sequelize");
+
 // All options at once:
 var sequelize = new Sequelize(database_name, database_username, database_password, {
   // custom host; default: localhost
