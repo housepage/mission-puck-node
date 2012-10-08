@@ -91,7 +91,9 @@ models.FacebookUser.belongsTo(models.User);
 models.User.hasMany(models.Car, { as : 'Cars' } );
 models.Car.hasMany(models.Location);
 
-sequelize.sync();
+sequelize.sync()
+    .success(function() {})
+    .error(function() {});
 
 //setup everyauth
 var usersById = {};
@@ -101,7 +103,9 @@ function addUser (source, sourceUser) {
   var user, facebook;
 
   user = models.User.build({});
-  user.save();
+  user.save()
+    .success(function() {})
+    .error(function() {});
   console.log(user);
 
   sourceUser.facebook_id = sourceUser.id;
@@ -109,8 +113,9 @@ function addUser (source, sourceUser) {
   facebook = models.FacebookUser.build(sourceUser);
   console.log(Object.keys(facebook));
   facebook.setUser(user);
-  facebook.save();
-  user.save();
+  facebook.save()
+    .success(function() {})
+    .error(function() {});
 
   return user;
 }
