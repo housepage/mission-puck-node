@@ -10,6 +10,23 @@ var express = require('express')
   , path = require('path')
   , everyauth = require('everyauth');
 
+//setup everyauth
+var usersById = {};
+var nextUserId = 0;
+
+function addUser (source, sourceUser) {
+  var user;
+  if (arguments.length === 1) { // password-based
+    user = sourceUser = source;
+    user.id = ++nextUserId;
+    return usersById[nextUserId] = user;
+  } else { // non-password-based
+    user = usersById[++nextUserId] = {id: nextUserId};
+    user[source] = sourceUser;
+  }
+  return user;
+}
+
 everyauth.everymodule
   .findUserById( function (id, callback) {
     callback(null, usersById[id]);
