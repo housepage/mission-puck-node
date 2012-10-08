@@ -100,6 +100,10 @@ var usersById = {};
 var nextUserId = 0;
 
 function addUser (source, sourceUser) {
+  if (arguments.length === 1) {
+    return undefined;
+  }
+
   var user, facebook;
   
   sourceUser.facebook_id = sourceUser.id;
