@@ -137,7 +137,10 @@ everyauth.facebook
   .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
     var facebook_user = models.FacebookUser.find({ where: { facebook_id: fbUserMetadata.id }})[0]; 
 
-    return facebook_user.user || addUser('facebook', fbUserMetadata);
+    if(facebook_user != undefined) {
+      return facebook_user.user;
+    } else {
+      return addUser('facebook', fbUserMetadata);
   })
   .redirectPath('/');
 
