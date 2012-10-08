@@ -6,13 +6,12 @@
     "start": "node app"
   },
   "dependencies": {
-    "pg":"0.6.15",
     "express": "latest",
     "ejs": "*",
     "stylus": "*",
     "everyauth":"*",
-    "pg":"0.6.x",
-    "sequelize":"*"
+    "pg":"latest",
+    "sequelize":"latest"
   },
   "engines": {
     "node": "0.8.x",
