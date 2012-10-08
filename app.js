@@ -103,9 +103,9 @@ function addUser (source, sourceUser) {
   var user, facebook;
 
   user = models.User.build({});
-  user.save()
-    .success(function() {})
-    .error(function() {});
+  user.save({})
+    .success(function() { console.log("Success"); })
+    .error(function(error) { console.log(error); });
   console.log("Source User: " + Object.keys(sourceUser));
 
   sourceUser.facebook_id = sourceUser.id;
