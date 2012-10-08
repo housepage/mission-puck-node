@@ -10,6 +10,13 @@ var express = require('express')
   , path = require('path')
   , everyauth = require('everyauth');
 
+everyauth.everymodule
+  .findUserById( function (id, callback) {
+    callback(null, usersById[id]);
+  });
+
+var usersByFbId = {};
+
 everyauth.facebook
   .appId('527409683954743')
   .appSecret('6d74f59e13b26f01eff270356c6d5880')
