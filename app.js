@@ -110,7 +110,7 @@ function addUser (source, sourceUser) {
   console.log(Object.keys(facebook));
   facebook.setUser(user);
   facebook.save();
-  user.save()
+  user.save();
 
   return user;
 }
