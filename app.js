@@ -66,8 +66,17 @@ var sequelize = new Sequelize(database_name, database_username, database_passwor
   pool: { maxConnections: 5, maxIdleTime: 30}
 });
 
-var models = require('models');
-
+var models = {
+  User : sequelize.define('User', {
+    authenticator: { type: Sequelize.STRING, defaultValue: 'facebook' } , 
+    : { type: Sequelize.STRING } , 
+  }),
+  Task :sequelize.define('Task', {
+    title: Sequelize.STRING,
+    description: Sequelize.TEXT,
+    deadline: Sequelize.DATE
+  })
+}
 
 //setup everyauth
 var usersById = {};
