@@ -106,12 +106,14 @@ function addUser (source, sourceUser) {
   user.save()
     .success(function() {})
     .error(function() {});
-  console.log(user);
+  console.log("Source User: " + Object.keys(sourceUser));
 
   sourceUser.facebook_id = sourceUser.id;
-  delete sourceUser['id'];
-  facebook = models.FacebookUser.build(sourceUser);
-  console.log(Object.keys(facebook));
+  facebook = models.FacebookUser.build();
+  facebook.facebook_id = sourceUser.id;
+  facebook.first_name = sourceUser.first_name
+  facebook.last_name = sourceUser.last_name
+  facebook.name = sourceUser.name
   facebook.setUser(user);
   facebook.save()
     .success(function() {})
