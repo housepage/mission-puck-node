@@ -68,8 +68,7 @@ var sequelize = new Sequelize(database_name, database_username, database_passwor
 
 var models = {
   User : sequelize.define('User', {
-    authenticator: { type: Sequelize.STRING, defaultValue: 'facebook' } , 
-    : { type: Sequelize.STRING } , 
+    authenticator: { type: Sequelize.STRING, defaultValue: 'facebook' }  
   }),
   Task :sequelize.define('Task', {
     title: Sequelize.STRING,
@@ -92,6 +91,9 @@ function addUser (source, sourceUser) {
     user = usersById[++nextUserId] = {id: nextUserId};
     user[source] = sourceUser;
   }
+
+  console.log(JSON.stringify(user.facebook));
+
   return user;
 }
 
