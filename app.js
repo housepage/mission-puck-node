@@ -58,9 +58,6 @@ var sequelize = new Sequelize(database_name, database_username, database_passwor
   // so defining the timestamps for each model will be not necessary
   define: { timestamps: false },
  
-  // similiar for sync: you can define this to always force sync for models
-  sync: { force: true },
- 
   // use pooling in order to reduce db connection overload and to increase speed
   // currently only for mysql and postgresql (since v1.5.0)
   pool: { maxConnections: 5, maxIdleTime: 30}
@@ -181,6 +178,13 @@ app.configure(function(){
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
   app.use(everyauth.middleware());
+  app.use('/',function(req, res, next){
+    if(req.user != undefined && req.user.facebook != undefined) {
+      next();
+    } else {
+      res.redirect('/auth/facebook');
+    }
+  });
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
   app.use(express.static(path.join(__dirname, 'public')));
