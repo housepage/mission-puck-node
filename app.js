@@ -118,13 +118,14 @@ function addUser (source, sourceUser) {
         .success(function() {})
         .error(function() {});
      })
-    .error(function(error) { console.log(error); });
+    .error(function(error) { });
   
   return user;
 }
 
 everyauth.everymodule
   .findUserById( function (id, callback) {
+    var user = models.User.find({ where: { id: id }})[0]; 
     callback(null, usersById[id]);
   });
 
@@ -148,6 +149,8 @@ everyauth.facebook
   })
   .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
     var facebook_user = models.FacebookUser.find({ where: { facebook_id: fbUserMetadata.id }})[0]; 
+
+    console.log("Facebook User: " + facebook_user);
 
     if(facebook_user != undefined) {
       return facebook_user.user;
