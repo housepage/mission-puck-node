@@ -88,7 +88,7 @@ var models = {
 };
 
 models.FacebookUser.belongsTo(models.User);
-models.User.hasMany(models.Car { as : 'Cars' } );
+models.User.hasMany(models.Car, { as : 'Cars' } );
 models.Car.hasMany(models.Location);
 
 sequelize.sync();
