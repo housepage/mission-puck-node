@@ -156,9 +156,10 @@ everyauth.facebook
     console.log("Finding user: " + fbUserMetadata.id);
     var facebook_user = models.FacebookUser.find({ where: 'facebook_id = 10508822'}).success(function(user) {
       console.log("Facebook User: " + user);
+      facebook_user = user[0];
     })[0];
 
-    console.log(facebook_user);
+    console.log("Outside the facebook_user block: " + facebook_user);
 
     if(facebook_user != undefined) {
       console.log(facebook_user.user);
