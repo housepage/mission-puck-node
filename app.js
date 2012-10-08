@@ -37,8 +37,6 @@ var usersByFbId = {};
 everyauth.facebook
   .appId('527409683954743')
   .appSecret('6d74f59e13b26f01eff270356c6d5880')
-  .getLoginPath('/login')
-  .postLoginPath('/login')
   .handleAuthCallbackError( function (req, res) {
     // If a user denies your app, Facebook will redirect the user to
     // /auth/facebook/callback?error_reason=user_denied&error=access_denied&error_description=The+user+denied+your+request.
