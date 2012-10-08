@@ -101,11 +101,13 @@ function addUser (source, sourceUser) {
   var user, facebook;
 
   user = models.User.create({});
+  console.log(user);
 
   sourceUser.facebook_id = sourceUser.id;
   delete sourceUser['id'];
   facebook = models.FacebookUser.create(sourceUser);
-  facebook.setUsers([user]);
+  console.log(facebook);
+  facebook.setUser(user);
 
   return user;
 }
