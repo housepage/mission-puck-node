@@ -153,15 +153,21 @@ everyauth.facebook
   })
   .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
     var facebook_user;
+    console.log("Finding user: " + fbUserMetadata.id);
     models.FacebookUser.find({ where: { facebook_id: fbUserMetadata.id }}).success(function(user) {
       facebook_user = user;
     });
 
+    console.log(facebook_user);
+
     if(facebook_user != undefined) {
+      console.log(facebook_user.user);
       return facebook_user.user;
     } else {
+      console.log("Creating user: " + fbUserMetadata.id);
       return addUser('facebook', fbUserMetadata);
     }
+      
   })
   .redirectPath('/');
 
