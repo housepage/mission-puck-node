@@ -155,10 +155,9 @@ everyauth.facebook
     var facebook_user;
     console.log("Finding user: " + fbUserMetadata.id);
     var facebook_user = models.FacebookUser.find({ where: 'facebook_id = 10508822'}).success(function(user) {
-
       if(user != undefined) {
         console.log("Facebook User: " + user);
-        facebook_user = user[0];
+        return user[0];
       }
     })[0];
 
