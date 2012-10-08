@@ -23,7 +23,8 @@ everyauth.facebook
     console.log(res);
   })
   .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
-    // find or create user logic goes here
+    return usersByFbId[fbUserMetadata.id] ||
+            (usersByFbId[fbUserMetadata.id] = addUser('facebook', fbUserMetadata));
   })
   .redirectPath('/');
 
