@@ -153,23 +153,16 @@ everyauth.facebook
   })
   .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
     var facebook_user;
-    console.log("Finding user: " + fbUserMetadata.id);
-    var facebook_user = models.FacebookUser.find({ where: 'facebook_id = 10508822'}).success(function(user) {
+    
+    models.FacebookUser.find({ where: 'facebook_id = 10508822'}).success(function(user) {
       if(user != undefined) {
-        console.log("Facebook User: " + user);
-        return user[0];
+        return user.user;
+      } else {
+        return addUser('facebook', fbUserMetadata);
       }
-    })[0];
+    });
 
-    console.log("Outside the facebook_user block: " + facebook_user);
-
-    if(facebook_user != undefined) {
-      console.log(facebook_user.user);
-      return facebook_user.user;
-    } else {
-      console.log("Creating user: " + fbUserMetadata.id);
-      return addUser('facebook', fbUserMetadata);
-    }
+    return facebook_user;
   })
   .redirectPath('/');
 
