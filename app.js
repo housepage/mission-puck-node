@@ -100,13 +100,13 @@ var nextUserId = 0;
 function addUser (source, sourceUser) {
   var user, facebook;
 
-  user = models.User.build({}).success(function() {});
+  user = models.User.build({});
   user.save();
   console.log(user);
 
   sourceUser.facebook_id = sourceUser.id;
   delete sourceUser['id'];
-  facebook = models.FacebookUser.build(sourceUser).success(function() {});
+  facebook = models.FacebookUser.build(sourceUser);
   console.log(Object.keys(facebook));
   facebook.setUser(user);
   facebook.save();
