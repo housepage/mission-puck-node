@@ -153,16 +153,18 @@ everyauth.facebook
   })
   .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
     var facebook_user;
-    
+
+    var promise = this.Promise();
+
     models.FacebookUser.find({ where: 'facebook_id = 10508822'}).success(function(user) {
       if(user != undefined) {
-        return user.user;
+        promise.fulfill(user.user);
       } else {
-        return addUser('facebook', fbUserMetadata);
+        promise.fulfill(addUser('facebook', fbUserMetadata));
       }
     });
 
-    return facebook_user;
+    return promise;
   })
   .redirectPath('/');
 
