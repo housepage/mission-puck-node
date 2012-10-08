@@ -105,8 +105,8 @@ function addUser (source, sourceUser) {
   sourceUser.facebook_id = sourceUser.id;
   delete sourceUser['id'];
   facebook = models.FacebookUser.create(sourceUser);
-  user.setFacebook(facebook)
   user.save();
+  user.setFacebook(facebook)
 
   return user;
 }
@@ -135,7 +135,7 @@ everyauth.facebook
     console.log(res);
   })
   .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
-    var facebook_user = models.FacebookUser.find({ where: { facebook_id: fbUserMetadata.id }}); 
+    var facebook_user = models.FacebookUser.find({ where: { facebook_id: fbUserMetadata.id }})[0]; 
 
     return facebook_user.user || addUser('facebook', fbUserMetadata);
   })
