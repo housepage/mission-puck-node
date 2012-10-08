@@ -10,6 +10,21 @@ var express = require('express')
   , path = require('path')
   , everyauth = require('everyauth');
 
+var connection_string_regex = /^postgres://([a-z]+):([0-9a-zA-Z\_]+)@([a-z0-9\.]+.amazonaws.com):([0-9]+)/([a-zA-Z0-9]+)$/;
+var connection_parts = string.match(connection_string_regex);
+
+console.log(connection_parts);
+
+var pg = require('pg');
+
+pg.connect(process.env.DATABASE_URL, function(err, client) {
+  var query = client.query('SELECT * FROM your_table');
+
+    query.on('row', function(row) {
+      console.log(JSON.stringify(row));
+    });
+});
+
 //setup everyauth
 var usersById = {};
 var nextUserId = 0;
