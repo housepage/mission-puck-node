@@ -127,11 +127,11 @@ function addUser (source, sourceUser) {
   return user;
 }
 
-everyauth.everymodule
+/*everyauth.everymodule
   .findUserById( function (id, callback) {
     var user = models.User.find({ where: { id: id }})[0]; 
     callback(null, user);
-  });
+  });*/
 
 var usersByFbId = {};
 
@@ -155,6 +155,7 @@ everyauth.facebook
     var facebook_user;
     console.log("Finding user: " + fbUserMetadata.id);
     models.FacebookUser.find({ where: { facebook_id: fbUserMetadata.id }}).success(function(user) {
+      console.log("USER: " + user);
       facebook_user = user;
     });
 
