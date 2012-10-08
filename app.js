@@ -157,7 +157,7 @@ everyauth.facebook
     }).error(function(error) {
       console.log("Error find existing user");
       return addUser('facebook', fbUserMetadata);
-    };
+    });
   })
   .redirectPath('/');
 
