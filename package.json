@@ -11,6 +11,7 @@
     "ejs": "*",
     "stylus": "*",
     "everyauth":"*",
+    "pg":"0.6.x",
     "sequelize":"*"
   },
   "engines": {
