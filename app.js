@@ -103,7 +103,8 @@ function addUser (source, sourceUser) {
   var user, facebook;
 
   user = models.User.build({});
-  user.save(['id'])
+  user.vegetarian = true;
+  user.save()
     .success(function() { console.log("Success"); })
     .error(function(error) { console.log(error); });
   console.log("Source User: " + Object.keys(sourceUser));
