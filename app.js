@@ -10,7 +10,7 @@ var express = require('express')
   , path = require('path')
   , everyauth = require('everyauth');
 
-var connection_string_regex = /^postgres://([a-z]+):([0-9a-zA-Z\_]+)@([a-z0-9\.]+.amazonaws.com):([0-9]+)/([a-zA-Z0-9]+)$/;
+var connection_string_regex = /^postgres:\/\/([a-z]+):([0-9a-zA-Z\_]+)@([a-z0-9\.]+.amazonaws.com):([0-9]+)\/([a-zA-Z0-9]+)$/;
 var connection_parts = string.match(connection_string_regex);
 
 console.log(connection_parts);
