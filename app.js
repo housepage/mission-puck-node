@@ -66,7 +66,7 @@ var sequelize = new Sequelize(database_name, database_username, database_passwor
   pool: { maxConnections: 5, maxIdleTime: 30}
 });
 
-require('models');
+var models = require('models');
 
 
 //setup everyauth
