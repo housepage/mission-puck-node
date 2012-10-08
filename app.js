@@ -68,31 +68,45 @@ var sequelize = new Sequelize(database_name, database_username, database_passwor
 
 var models = {
   User : sequelize.define('User', {
-    authenticator: { type: Sequelize.STRING, defaultValue: 'facebook' }  
+    
   }),
-  Task :sequelize.define('Task', {
-    title: Sequelize.STRING,
-    description: Sequelize.TEXT,
-    deadline: Sequelize.DATE
-  })
-}
+  FacebookUser: sequelize.define('FacebookUser', {
+    facebook_id: Sequelize.INTEGER,
+    name: Sequelize.STRING,
+    first_name: Sequelize.STRING,
+    last_name: Sequelize.STRING,
+  }),
+  Car: sequelize.define('Car', {
+    make: Sequelize.STRING,
+    model: Sequelize.STRING,
+  }),
+  Location: sequelize.define('Location', {
+    latitude: Sequelize.FLOAT,
+    longitude: Sequelize.FLOAT,
+    cross_streets: Sequelize.STRING
+  }),
+};
+
+models.FacebookUser.belongsTo(models.User);
+models.User.hasMany(models.Car { as : 'Cars' } );
+models.Car.hasMany(models.Location);
+
+sequelize.sync();
 
 //setup everyauth
 var usersById = {};
 var nextUserId = 0;
 
 function addUser (source, sourceUser) {
-  var user;
-  if (arguments.length === 1) { // password-based
-    user = sourceUser = source;
-    user.id = ++nextUserId;
-    return usersById[nextUserId] = user;
-  } else { // non-password-based
-    user = usersById[++nextUserId] = {id: nextUserId};
-    user[source] = sourceUser;
-  }
+  var user, facebook;
 
-  console.log(JSON.stringify(user.facebook));
+  user = models.User.build({});
+
+  sourceUser.facebook_id = sourceUser.id;
+  delete sourceUser['id'];
+  facebook = models.FacebookUser.create(sourceUser);
+  user.setFacebook(facebook)
+  user.save();
 
   return user;
 }
@@ -103,6 +117,10 @@ everyauth.everymodule
   });
 
 var usersByFbId = {};
+
+/* Example Facebook User Object:
+  {"id":"10508822","name":"Andrew Gall","first_name":"Andrew","last_name":"Gall","link":"http://www.facebook.com/housepage","username":"housepage","hometown":{"id":"111952012155701","name":"Marietta, Pennsylvania"},"location":{"id":"110843418940484","name":"Seattle, Washington"},"quotes":"\"Live truly and truly you are free\"\r\n-Andrew Gall\r\n\r\n\"Our lives begin to end the day we become silent about things that matter.\"\r\n- Martin Luther King Jr.\r\n\r\n\"Love truth, and pardon error.\"\r\n- Voltaire\r\n\r\n\"I wish I could apt-get a pizza\"\r\n-Talisha Lopez\r\n\r\n\"Happiness is a perfume you cannot pour on others without getting a few drops on yourself.\"\r\n- Ralph Waldo Emerson\r\n\r\n\"Sometimes it is said that man can not be trusted with the government of himself. Can he, then, be trusted with the government of others? Or have we found angels in the forms of kings to govern him? Let history answer this question.\"\r\n-Thomas Jeffersion (1st Inaugural Address)\r\n\r\n\"Before you embark on a journe
+  2012-10-08T06:27:33+00:00 app[web.1]: y of revenge, dig two graves.\"\r\n- Confucius\r\n\r\n\"Silence is Participation\"\r\n- Richard Rush\r\n\r\n\"Nearly all men can stand adversity, but if you want to test a man's character, give him power\"\r\n- Abraham Lincoln","inspirational_people":[{"id":"160449914018111","name":"Martin Luther King, Jr."},{"id":"107977809230256","name":"Thomas Jefferson"},{"id":"107670709262200","name":"Voltaire"},{"id":"105574829475447","name":"Richard Rush"},{"id":"106676942701904","name":"Gandhi"}],"gender":"male","timezone":-7,"locale":"en_US","languages":[{"id":"106059522759137","name":"English"}],"verified":true,"updated_time":"2012-10-07T02:57:12+0000"} */
 
 everyauth.facebook
   .appId('527409683954743')
@@ -117,8 +135,9 @@ everyauth.facebook
     console.log(res);
   })
   .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
-    return usersByFbId[fbUserMetadata.id] ||
-            (usersByFbId[fbUserMetadata.id] = addUser('facebook', fbUserMetadata));
+    var facebook_user = models.FacebookUser.find({ where: { facebook_id: fbUserMetadata.id }}); 
+
+    return facebook_user.user || addUser('facebook', fbUserMetadata);
   })
   .redirectPath('/');
 
