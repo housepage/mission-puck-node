@@ -12,16 +12,58 @@ var express = require('express')
 
 console.log(process.env.DATABASE_URL);
 
-var connection_string_regex = /^postgres:\/\/([a-z]+):([a-zA-Z0-9]+)@([a-z0-9\-\.]+:[0-9]*\/[a-z0-9]+)/;
+var connection_string_regex = /^postgres:\/\/([a-z]+):([a-zA-Z0-9]+)@([a-z0-9\-\.]+):([0-9]*)\/([a-z0-9]+)/;
 var connection_parts = process.env.DATABASE_URL.match(connection_string_regex);
 
+var database_username = connection_parts[1],
+    database_password = connection_parts[2],
+    database_hostname = connection_parts[3],
+    database_port = connection_parts[4],
+    database_name = connection_parts[5]; 
 
-console.log(connection_parts);
+// All options at once:
+var sequelize = new Sequelize(database_name, database_username, database_password, {
+  // custom host; default: localhost
+  host: database_hostname,
+ 
+  // custom port; default: 3306
+  port: database_port,
+ 
+  // custom protocol
+  // - default: 'tcp'
+  // - added in: v1.5.0
+  // - postgres only, useful for heroku
+  protocol: 'postgresql',
+ 
+  // disable logging; default: console.log
+  logging: false,
+ 
+  // max concurrent database requests; default: 50
+  maxConcurrentQueries: 100,
+ 
+  // the sql dialect of the database
+  // - default is 'mysql'
+  // - currently supported: 'mysql', 'sqlite', 'postgres'
+  dialect: 'postgres',
+ 
+  // disable inserting undefined values as NULL
+  // - default: false
+  omitNull: true,
+ 
+  // specify options, which are used when sequelize.define is called
+  // the following example is basically the same as:
+  // sequelize.define(name, attributes, { timestamps: false })
+  // so defining the timestamps for each model will be not necessary
+  define: { timestamps: false },
+ 
+  // similiar for sync: you can define this to always force sync for models
+  sync: { force: true }
+ 
+  // use pooling in order to reduce db connection overload and to increase speed
+  // currently only for mysql and postgresql (since v1.5.0)
+  pool: { maxConnections: 5, maxIdleTime: 30}
+})
 
-var pg = require('pg');
-
-pg.connect(process.env.DATABASE_URL, function(err, client) {
-});
 
 //setup everyauth
 var usersById = {};
