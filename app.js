@@ -181,11 +181,11 @@ app.configure(function(){
   app.use('/',function(req, res, next){
     if(req.user != undefined) {
       console.log("Request: " + req.user + " " + req.user.getFacebookUser());
-      next();
     } else {
       console.log("Redirect?");
       //res.redirect('/auth/facebook');
     }
+    next();
   });
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
