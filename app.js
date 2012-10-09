@@ -179,6 +179,8 @@ app.configure(function(){
   app.use(express.session());
   app.use(everyauth.middleware());
   app.use('/',function(req, res, next){
+    console.log("Request: " + req[0]);
+
     if(req.user != undefined) {
       console.log("Request: " + req.user + " " + req.user.getFacebookUser());
     } else {
