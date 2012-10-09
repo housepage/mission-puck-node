@@ -179,11 +179,13 @@ app.configure(function(){
   app.use(express.session());
   app.use(everyauth.middleware());
   app.use('/',function(req, res, next){
-    if(req.user != undefined && req.user.getFacebookUser() != undefined) {
+    console.log("Request: " + req + " " + res);
+    next();
+    /*if(req.user != undefined && req.user.getFacebookUser() != undefined) {
       next();
     } else {
       res.redirect('/auth/facebook');
-    }
+    }*/
   });
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
