@@ -181,10 +181,9 @@ app.configure(function(){
   app.use('/',function(req, res, next){
 
     if(req.session.auth != undefined) {
-      console.log("Request: " + req.session.auth);
+      console.log("Request: " + req.session.auth.facebook);
     } else {
-      console.log("Redirect?");
-      //res.redirect('/auth/facebook');
+      res.redirect('/auth/facebook');
     }
     next();
   });
