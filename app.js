@@ -24,51 +24,11 @@ var database_username = connection_parts[1],
 
 var Sequelize = require("sequelize");
 
+var database = require("./database");
+
 // All options at once:
-var sequelize = new Sequelize(database_name, database_username, database_password, {
-  // custom host; default: localhost
-  host: database_hostname,
- 
-  // custom port; default: 3306
-  port: database_port,
- 
-  // custom protocol
-  // - default: 'tcp'
-  // - added in: v1.5.0
-  // - postgres only, useful for heroku
-  protocol: 'postgresql',
- 
-  // disable logging; default: console.log
-  logging: false,
- 
-  // max concurrent database requests; default: 50
-  maxConcurrentQueries: 100,
- 
-  // the sql dialect of the database
-  // - default is 'mysql'
-  // - currently supported: 'mysql', 'sqlite', 'postgres'
-  dialect: 'postgres',
- 
-  // disable inserting undefined values as NULL
-  // - default: false
-  omitNull: true,
- 
-  // specify options, which are used when sequelize.define is called
-  // the following example is basically the same as:
-  // sequelize.define(name, attributes, { timestamps: false })
-  // so defining the timestamps for each model will be not necessary
-  define: { timestamps: false },
- 
-  // use pooling in order to reduce db connection overload and to increase speed
-  // currently only for mysql and postgresql (since v1.5.0)
-  pool: { maxConnections: 5, maxIdleTime: 30}
-});
-
-var models = require('./models.js');
-
-sequelize.sync()
-    .success(function() {})
-    .error(function() {});
+var sequelize = database.sequelize;
+var models = database.models;
 
 //setup everyauth
 var usersById = {};
