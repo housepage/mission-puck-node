@@ -1,3 +1,12 @@
+var connection_string_regex = /^postgres:\/\/([a-z]+):([a-zA-Z0-9]+)@([a-z0-9\-\.]+):([0-9]*)\/([a-z0-9]+)/;
+var connection_parts = process.env.DATABASE_URL.match(connection_string_regex);
+
+var database_username = connection_parts[1],
+    database_password = connection_parts[2],
+    database_hostname = connection_parts[3],
+    database_port = connection_parts[4],
+    database_name = connection_parts[5]; 
+
 var Sequelize = require("sequelize");
 
 // All options at once:
