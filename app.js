@@ -179,10 +179,9 @@ app.configure(function(){
   app.use(express.session());
   app.use(everyauth.middleware());
   app.use('/',function(req, res, next){
-    console.log("Request: " + req[0]);
 
-    if(req.user != undefined) {
-      console.log("Request: " + req.user + " " + req.user.getFacebookUser());
+    if(req.session.auth != undefined) {
+      console.log("Request: " + req.session.auth);
     } else {
       console.log("Redirect?");
       //res.redirect('/auth/facebook');
