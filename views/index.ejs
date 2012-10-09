@@ -32,6 +32,11 @@
               content: 'Location found using HTML5.'
             });
 
+            var car_marker = new google.maps.Market({
+              map: map,
+              position: pos
+            });
+
             map.setCenter(pos);
           }, function() {
             handleNoGeolocation(true);
@@ -66,10 +71,22 @@
     <div data-role="page">
 
       <div data-role="header">
-        <h1>Current Location</h1>
+        <h1>Current Car Location</h1>
       </div><!-- /header -->
 
-      <div id="map" style="position: absolute; width: 100%; height: 100%;" data-role="content"> 
+      <div id="current_map" style="position: absolute; width: 100%; height: 100%;" data-role="content"> 
+         
+      </div><!-- /content -->
+
+    </div><!-- /page -->
+
+    <div data-role="page">
+
+      <div data-role="header">
+        <h1>Mark Parked</h1>
+      </div><!-- /header -->
+
+      <div id="parked_map" style="position: absolute; width: 100%; height: 100%;" data-role="content"> 
          
       </div><!-- /content -->
 
