@@ -11,58 +11,66 @@
     <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
   </head>
   <body>
-    <div data-role="page">
+    <div id="current-location" data-role="page">
 
       <div data-role="header">
         <h1>Current Car Location</h1>
       </div><!-- /header -->
 
-      <div id="current_map" style="position: absolute; width: 100%; height: 100%;" data-role="content"> 
+      <div id="current_map" style="position: absolute; width: 100%; height: 100%; bottom: 10px;" data-role="content"> 
          
       </div><!-- /content -->
-
+      <a href="#mark-parked" data-role="button">Mark Parked</a>
     </div><!-- /page -->
 
-    <div data-role="page">
+    <div id="mark-parked" data-role="page">
 
       <div data-role="header">
         <h1>Mark Parked</h1>
       </div><!-- /header -->
 
-      <div id="parked_map" style="position: absolute; width: 100%; height: 100%;" data-role="content"> 
+      <div id="parked_map" style="position: absolute; width: 100%; height: 100%; bottom: 10px;" data-role="content"> 
          
       </div><!-- /content -->
+      <a href="#current-location" data-role="button">View Current Location</a>
 
     </div><!-- /page -->
     <script>
-      var map;
+      var current_map, parked_map;
 
       function initialize() {
         var mapOptions = {
           zoom: 17,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        map = new google.maps.Map(document.getElementById('current_map'),
+
+        current_map = new google.maps.Map(document.getElementById('current_map'),
             mapOptions);
+            
+        parked_map = new google.maps.Map(document.getElementById('parked_map'),
 
         // Try HTML5 geolocation
         if(navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = new google.maps.LatLng(position.coords.latitude,
-                                             position.coords.longitude);
+            var current_pos = new google.maps.LatLng(position.coords.latitude,
+              position.coords.longitude);
+
+            var car_pos = current_pos; 
 
             var infowindow = new google.maps.InfoWindow({
-              map: map,
-              position: pos,
-              content: 'Location found using HTML5.'
+              map: current_map,
+              position: car_pos,
+              content: 'Your <%= car %> is parked here'
             });
 
-            var car_marker = new google.maps.Marker({
-              map: map,
-              position: pos
+            var new_car_marker = new google.maps.Marker({
+              map: parked_map,
+              position: current_pos, 
+              draggable: true
             });
 
-            map.setCenter(pos);
+            current_map.setCenter(car_pos);
+            parked_map.setCenter(current_pos);
           }, function() {
             handleNoGeolocation(true);
           });
@@ -80,7 +88,7 @@
         }
 
         var options = {
-          map: map,
+          map: parked_map,
           position: new google.maps.LatLng(60, 105),
           content: content
         };
