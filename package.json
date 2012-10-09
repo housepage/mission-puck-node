@@ -10,7 +10,7 @@
     "ejs": "*",
     "stylus": "*",
     "everyauth":"*",
-    "pg":"latest",
+    "pg":"0.7.2",
     "sequelize":"latest"
   },
   "engines": {
