@@ -110,6 +110,9 @@ app.configure(function(){
     } else {
       res.redirect('/auth/facebook');
     }
+
+    req.session.models = models;
+
     next();
   });
   app.use(app.router);
