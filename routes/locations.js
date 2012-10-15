@@ -1,3 +1,3 @@
 exports.parked = function(req, res){
-  res.send(req.session.models.Car.getLocations());
+  res.send(req.models.Car.getLocations());
 };

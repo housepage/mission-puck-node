@@ -111,7 +111,7 @@ app.configure(function(){
       res.redirect('/auth/facebook');
     }
 
-    req.session.models = models;
+    req.models = models;
 
     next();
   });
