@@ -1,4 +1,4 @@
-var connection_string_regex = /^postgres:\/\/([a-z]+):([a-zA-Z0-9]+)@([a-z0-9\-\.]+):([0-9]*)\/([a-z0-9]+)/;
+var connection_string_regex = /^postgres:\/\/([a-z\-]+):([a-zA-Z0-9]+)@([a-z0-9\-\.]+):([0-9]*)\/([a-z0-9]+)/;
 var connection_parts = process.env.DATABASE_URL.match(connection_string_regex);
 
 var database_username = connection_parts[1],

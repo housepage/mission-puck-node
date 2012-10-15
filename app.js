@@ -78,7 +78,7 @@ everyauth.facebook
 
     var promise = this.Promise();
 
-    models.FacebookUser.find({ where: 'facebook_id = 10508822'}).success(function(user) {
+    models.FacebookUser.find({ where: 'facebook_id = ' + fbUserMetadata.id }).success(function(user) {
       if(user != undefined) {
         promise.fulfill(user.user);
       } else {
