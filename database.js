@@ -64,6 +64,17 @@ var models = {
   Car: sequelize.define('Car', {
     make: Sequelize.STRING,
     model: Sequelize.STRING,
+  },
+  {
+    classMethods: {
+      getLocations: function(onFind) {
+        models.Location.find(123).success(function(locationFound) {
+          onFind(locationFound);
+        });
+      },
+      getLastLocation: function() {
+      },
+    }
   }),
   Location: sequelize.define('Location', {
     latitude: Sequelize.FLOAT,
