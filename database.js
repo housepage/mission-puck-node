@@ -68,9 +68,9 @@ var models = {
   {
     classMethods: {
       getLocations: function(onFind) {
-        models.Location.find(123).success(function(locationFound) {
-          console.log("Location Found: " + locationFound);
-          onFind(locationFound);
+        models.Location.findAll().success(function(locations) {
+          console.log("Location Found: " + locations[0]);
+          onFind(locations[0]);
         });
       },
       getLastLocation: function() {
