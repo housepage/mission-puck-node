@@ -54,6 +54,24 @@ exports.sequelize = sequelize;
 var models = {
   User : sequelize.define('User', {
     vegetarian: { 'type': Sequelize.BOOLEAN , 'defaultValue': true }
+  }, {
+    instanceMethods: {
+      getCars: function(onFind) {
+        models.Car.findAll({where : { UserId : req.session.auth.id } ).success(function(locations) {
+          console.log("Location Found: " + locations[0]);
+          onFind(locations[0]);
+        });
+      },
+      getCar: function(onFind) {
+        this.getCars(function(cars) {
+          if(cars.length > 0) {
+            onFind(cars[0]); 
+          } else {
+            onFind();
+          }
+        });
+      },
+    }
   }),
   FacebookUser: sequelize.define('FacebookUser', {
     facebook_id: Sequelize.INTEGER,
@@ -64,9 +82,8 @@ var models = {
   Car: sequelize.define('Car', {
     make: Sequelize.STRING,
     model: Sequelize.STRING,
-  },
-  {
-    classMethods: {
+  }, {
+    instanceMethods: {
       getLocations: function(onFind) {
         models.Location.findAll().success(function(locations) {
           console.log("Location Found: " + locations[0]);
