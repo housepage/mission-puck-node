@@ -57,7 +57,7 @@ var models = {
   }, {
     instanceMethods: {
       getCars: function(onFind) {
-        models.Car.findAll({where : { UserId : req.session.auth.id } ).success(function(locations) {
+        models.Car.findAll({where : { UserId : req.session.auth.id }} ).success(function(locations) {
           console.log("Location Found: " + locations[0]);
           onFind(locations[0]);
         });
