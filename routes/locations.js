@@ -1,5 +1,5 @@
 exports.parked = function(req, res){
-  console.log(req.session);
+  console.log("Session: " + req.session);
   req.session.auth.facebook.getCar( function(car){
     res.send(car);
   } );
