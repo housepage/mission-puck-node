@@ -49,11 +49,14 @@ function addUser (source, sourceUser) {
   return user;
 }
 
-/*everyauth.everymodule
+
+
+everyauth.everymodule
   .findUserById( function (id, callback) {
-    var user = models.User.find({ where: { id: id }})[0]; 
-    callback(null, user);
-  });*/
+    var db = app.get('db');
+    var User = db.main.model('User');
+    User.findById(userId, callback);
+  });
 
 var usersByFbId = {};
 
@@ -91,6 +94,8 @@ everyauth.facebook
   .redirectPath('/');
 
 var app = express();
+
+app.set('db',database);
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
