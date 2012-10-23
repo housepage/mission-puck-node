@@ -108,7 +108,7 @@ app.configure(function(){
   app.use(express.cookieParser('GSBhyVcgTf+fugJKdJLI0wrU3TrzaEAAqmnxsTg4EFQ='));
   app.use(express.cookieSession());
   app.use(everyauth.middleware());
-  app.use('/',function(req, res, next){
+  /* app.use('/',function(req, res, next){
 
     if(req.session.auth != undefined) {
       console.log("Request: " + req.session.auth.facebook);
@@ -119,7 +119,7 @@ app.configure(function(){
     req.models = models;
 
     next();
-  });
+  }); */
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
   app.use(express.static(path.join(__dirname, 'public')));
