@@ -21,7 +21,7 @@ var models = database.models;
 var usersById = {};
 var nextUserId = 0;
 
-function addUser (source, sourceUser) {
+function addUser (source, sourceUser, promise) {
   if (arguments.length === 1) {
     return undefined;
   }
@@ -41,12 +41,10 @@ function addUser (source, sourceUser) {
     .success(function() {
       facebook.setUser(user);
       facebook.save()
-        .success(function() {})
-        .error(function() {});
+        .success(function() { promise.fulfill(user); })
+        .error(function() { promise.fulfill(undefined); });
      })
-    .error(function(error) { });
-  
-  return user;
+    .error(function(error) { promise.fulfill(undefined) });
 }
 
 
@@ -85,7 +83,7 @@ everyauth.facebook
       if(user != undefined) {
         promise.fulfill(user.user);
       } else {
-        promise.fulfill(addUser('facebook', fbUserMetadata));
+        addUser('facebook', fbUserMetadata, promise);
       }
     });
 
