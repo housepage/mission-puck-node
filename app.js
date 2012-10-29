@@ -35,10 +35,11 @@ function addUser (source, sourceUser, promise) {
   facebook.last_name = sourceUser.last_name
   facebook.name = sourceUser.name
 
-  user = models.User.create({ vegetarian: true }) .success(function(user) {
+  user = models.User.create({ vegetarian: true }) .success(function() {
+      console.log('Successfully created user: ' + user);
       facebook.setUser(user);
       facebook.save()
-        .success(function() { promise.fulfill(user); })
+        .success(function() { console.log("Successfully saved Facebook user"); promise.fulfill(user); })
         .error(function(error) { console.log("Error in save of facebook user: " + error); });
      })
     .error(function(error) { console.log("Error in save of user: " + error); });
@@ -77,7 +78,9 @@ everyauth.facebook
     var promise = this.Promise();
 
     models.FacebookUser.find({ where: 'facebook_id = ' + fbUserMetadata.id }).success(function(user) {
-      if(user != undefined) {
+      console.log("user: " + user);
+      console.log("user.user: " + user.user);
+      if(user != undefined && user.user != undefined) {
         promise.fulfill(user.user);
       } else {
         addUser('facebook', fbUserMetadata, promise);
