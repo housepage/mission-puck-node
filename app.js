@@ -35,7 +35,7 @@ function addUser (source, sourceUser, promise) {
   facebook.last_name = sourceUser.last_name
   facebook.name = sourceUser.name
 
-  user = models.User.create({ vegetarian: true }) .success(function() {
+  user = models.User.create({ vegetarian: true }) .success(function(user) {
       console.log('Successfully created user: ' + user);
       console.log('Successfully created user: ' + Object.keys(user));
       facebook.setUser(user);
