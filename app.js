@@ -50,8 +50,7 @@ function addUser (source, sourceUser, promise) {
 everyauth.everymodule
   .findUserById( function (id, callback) {
     var db = app.get('db');
-    var User = db.main.model('User');
-    User.findById(userId, callback);
+    db.models.User.find(id).success(callback);
   });
 
 var usersByFbId = {};
