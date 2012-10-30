@@ -1,13 +1,9 @@
 exports.parked = function(req, res){
-  console.log("Session: " + req.session);
-  console.log("Session (Keys): " + Object.keys(req.session));
-  console.log("Auth: " + req.session.auth);
-  console.log("Auth (Keys): " + Object.keys(req.session.auth));
-  console.log("Facebook Auth: " + req.session.auth.facebook);
-  console.log("Facebook Auth (Keys): " + Object.keys(req.session.auth.facebook));
-  console.log("loggedIn: " + req.session.auth.facebook.user);
-  console.log("loggedIn (Keys): " + Object.keys(req.session.auth.facebook.user));
-  req.session.auth.facebook.getCar( function(car){
+  console.log("Session: " + everyauth);
+  console.log("Session (Keys): " + Object.keys(everyauth));
+  console.log("Auth: " + everyauth.user);
+  console.log("Auth (Keys): " + Object.keys(everyauth.user));
+  everyauth.user.getCar( function(car){
     res.send(car);
   } );
 };
