@@ -36,8 +36,8 @@ function addUser (source, sourceUser, promise) {
   facebook.name = sourceUser.name
 
   user = models.User.create({ vegetarian: true }) .success(function() {
-      console.log('Successfully created user: ' + user[0]);
-      facebook.setUser(user[0]);
+      console.log('Successfully created user: ' + user);
+      facebook.setUser(user);
       facebook.save()
         .success(function() { console.log("Successfully saved Facebook user"); promise.fulfill(user); })
         .error(function(error) { console.log("Error in save of facebook user: " + error); });
@@ -53,6 +53,7 @@ everyauth.everymodule
     var db = app.get('db');
     console.log("Database Object: " + db);
     db.models.User.find(id).success( function(user) {
+      console.log("Success in lookup: " + user);
       callback(undefined,user);
     }).error(function(error){ 
       console.log("Error in Lookup: " + error);
