@@ -105,7 +105,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('GSBhyVcgTf+fugJKdJLI0wrU3TrzaEAAqmnxsTg4EFQ='));
   app.use(express.cookieSession());
-  app.use(everyauth.middleware());
+  app.use(everyauth.middleware(app));
   app.use('/',function(req, res, next){
 
     if(req.session.auth != undefined) {
@@ -136,6 +136,3 @@ app.get('/users', user.list);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
-
-everyauth.helpExpress(app);
-
