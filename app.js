@@ -54,7 +54,7 @@ everyauth.everymodule
     console.log("Database Object: " + db);
     db.models.User.find(id).success( function(user) {
       callback(undefined,user);
-    ).error(function(error){ 
+    }).error(function(error){ 
       console.log("Error in Lookup: " + error);
       callback(error,undefined);
     } );
