@@ -38,16 +38,18 @@
         map = new google.maps.Map(document.getElementById('map'),
           mapOptions);
         
-        $('#switch_buttons').click(function(eventObj) {
-          $('.switching_buttons').toggle();
+        $('.switch_buttons').click(function(eventObj) {
+          $('.switch_buttons').toggle();
         });
 
 
         $('#switch_to_mark_parked').click(function(eventObj) {
-          setupMarkCarLocation(map); 
+          eventObj.preventDefault();
+          setupMarkCarLocation(map);
         });
   
         $('#switch_to_current_location').click(function(eventObj) {
+          eventObj.preventDefault();
           setupCurrentLocation(map);
         });
 
