@@ -37,6 +37,7 @@ function addUser (source, sourceUser, promise) {
 
   user = models.User.create({ vegetarian: true }) .success(function() {
       console.log('Successfully created user: ' + user);
+      console.log('Successfully created user: ' + Object.keys(user));
       facebook.setUser(user);
       facebook.save()
         .success(function() { console.log("Successfully saved Facebook user"); promise.fulfill(user); })
