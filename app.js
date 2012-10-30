@@ -86,9 +86,11 @@ everyauth.facebook
 
     models.FacebookUser.find({ where: 'facebook_id = ' + fbUserMetadata.id }).success(function(user) {
       console.log("user: " + user);
-      console.log("user.user: " + Object.keys(user));
+      console.log("user (keys): " + Object.keys(user));
       if(user != undefined) {
-        promise.fulfill(user.user);
+        user.getUser().success( function() {
+          promise.fulfill(user.user);
+        } );
       } else {
         addUser('facebook', fbUserMetadata, promise);
       }
