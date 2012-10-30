@@ -30,12 +30,12 @@
 
       $(document).bind('pageinit', function() {
         $('.switch_buttons').click(function(eventObj) {
+          eventObj.preventDefault();
           $('.switch_buttons').toggle();
         });
 
 
         $('#switch_to_mark_parked').click(function(eventObj) {
-          eventObj.preventDefault();
           setupMarkCarLocation(map);
         });
   
