@@ -60,6 +60,9 @@ var models = {
         models.Car.findAll({where : { UserId : req.session.auth.id }} ).success(function(locations) {
           console.log("Location Found: " + locations[0]);
           onFind(locations[0]);
+        }).error( function(error) {
+          console.log("Error in Car Finding: " + error);
+          onFind({}); 
         });
       },
       getCar: function(onFind) {
