@@ -63,6 +63,7 @@ var usersByFbId = {};
 everyauth.facebook
   .appId('527409683954743')
   .appSecret('6d74f59e13b26f01eff270356c6d5880')
+  .redirectPath('/')
   .handleAuthCallbackError( function (req, res) {
     // If a user denies your app, Facebook will redirect the user to
     // /auth/facebook/callback?error_reason=user_denied&error=access_denied&error_description=The+user+denied+your+request.
@@ -88,8 +89,7 @@ everyauth.facebook
     });
 
     return promise;
-  })
-  .redirectPath('/');
+  });
 
 var app = express();
 
@@ -106,7 +106,7 @@ app.configure(function(){
   app.use(express.cookieParser('GSBhyVcgTf+fugJKdJLI0wrU3TrzaEAAqmnxsTg4EFQ='));
   app.use(express.cookieSession());
   app.use(everyauth.middleware());
-  /* app.use('/',function(req, res, next){
+  app.use('/',function(req, res, next){
 
     if(req.session.auth != undefined) {
       console.log("Request: " + req.session.auth.facebook);
@@ -117,7 +117,7 @@ app.configure(function(){
     req.models = models;
 
     next();
-  }); */
+  });
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
   app.use(express.static(path.join(__dirname, 'public')));
