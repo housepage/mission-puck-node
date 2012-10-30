@@ -58,7 +58,7 @@ var models = {
     instanceMethods: {
       getCars: function(onFind) {
         console.log("In getCars");
-        models.Car.findAll({where : { UserId : req.session.auth.id }} ).success(function(locations) {
+        models.Car.findAll({where : { UserId : this.id }} ).success(function(locations) {
           console.log("Location Found: " + locations[0]);
           onFind(locations);
         }).error( function(error) {
@@ -69,7 +69,7 @@ var models = {
       getCar: function(onFind) {
         console.log("In getCar: " + this);
         console.log("In getCar (Keys): " + Object.keys(this));
-        car_object.getCars(function(cars) {
+        this.getCars(function(cars) {
           console.log("Get Cars Found something");
           if(cars.length > 0) {
             onFind(cars[0]); 
