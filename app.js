@@ -49,8 +49,9 @@ function addUser (source, sourceUser, promise) {
 
 everyauth.everymodule
   .findUserById( function (id, callback) {
+    console.log('Trying to find user by id');
     var db = app.get('db');
-    db.models.User.find(id).success(callback);
+    db.models.User.find(id).success(callback).error(function(error){ console.log("Error in Lookup: " + error); } );
   });
 
 var usersByFbId = {};
