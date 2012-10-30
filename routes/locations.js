@@ -1,9 +1,9 @@
 exports.parked = function(req, res){
-  console.log("Session: " + req.user);
-  console.log("Session (Keys): " + Object.keys(req.user));
-  console.log("Auth: " + req.user.auth);
-  console.log("Auth (Keys): " + Object.keys(req.user.auth));
-  console.log("Facebook Auth: " + req.user.auth.facebook);
+  console.log("Session: " + req.session);
+  console.log("Session (Keys): " + Object.keys(req.session));
+  console.log("Auth: " + req.session.auth);
+  console.log("Auth (Keys): " + Object.keys(req.session.auth));
+  console.log("Facebook Auth: " + req.session.auth.facebook);
   console.log("Facebook Auth (Keys): " + Object.keys(req.user.auth.facebook));
   req.session.auth.facebook.getCar( function(car){
     res.send(car);
