@@ -56,20 +56,10 @@ var models = {
     vegetarian: { 'type': Sequelize.BOOLEAN , 'defaultValue': true }
   }, {
     instanceMethods: {
-      getCars: function(onFind) {
-        console.log("In getCars");
-        models.Car.findAll({where : { UserId : this.id }} ).success(function(locations) {
-          console.log("Location Found: " + locations[0]);
-          onFind(locations);
-        }).error( function(error) {
-          console.log("Error in Car Finding: " + error);
-          onFind([{Hello : "Goodbye"}]); 
-        });
-      },
       getCar: function(onFind) {
         console.log("In getCar: " + this);
         console.log("In getCar (Keys): " + Object.keys(this));
-        this.getCars(function(cars) {
+        this.getCars().success( function(cars) {
           console.log("Get Cars Found something");
           if(cars.length > 0) {
             onFind(cars[0]); 
