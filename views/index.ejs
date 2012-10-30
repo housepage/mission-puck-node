@@ -56,13 +56,11 @@
       }
       
       function setupCurrentLocation(map) {
-          $.mobile.pageLoading(); 
-
 
       }
 
       function setupMarkCarLocation(map) {
-        $.mobile.pageLoading(); 
+        $.mobile.loading('show'); 
 
         // Try HTML5 geolocation
         if(navigator.geolocation) {
