@@ -27,17 +27,8 @@
 
 
     <script>
-      var map,state;
 
-      function initialize() {
-        var mapOptions = {
-          zoom: 17,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        map = new google.maps.Map(document.getElementById('map'),
-          mapOptions);
-        
+      $(document).bind('pageinit', function() {
         $('.switch_buttons').click(function(eventObj) {
           $('.switch_buttons').toggle();
         });
@@ -52,7 +43,19 @@
           eventObj.preventDefault();
           setupCurrentLocation(map);
         });
+      });
 
+      var map,state;
+
+      function initialize() {
+        var mapOptions = {
+          zoom: 17,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        map = new google.maps.Map(document.getElementById('map'),
+          mapOptions);
+        
         setupCurrentLocation(map);
   
       }
