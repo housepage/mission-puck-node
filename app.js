@@ -49,8 +49,7 @@ function addUser (source, sourceUser, promise) {
 
 everyauth.debug = true;
 
-everyauth.everymodule.
-  .findUserById( function (req, id, callback) {
+everyauth.everymodule.findUserById( function (req, id, callback) {
     console.log('Trying to find user by id: ' + id);
     var db = app.get('db');
     console.log("Database Object: " + db);
