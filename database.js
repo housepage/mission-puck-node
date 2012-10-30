@@ -42,7 +42,7 @@ var sequelize = new Sequelize(database_name, database_username, database_passwor
   // the following example is basically the same as:
   // sequelize.define(name, attributes, { timestamps: false })
   // so defining the timestamps for each model will be not necessary
-  define: { timestamps: false },
+  define: { timestamps: true },
  
   // use pooling in order to reduce db connection overload and to increase speed
   // currently only for mysql and postgresql (since v1.5.0)
@@ -81,12 +81,6 @@ var models = {
     model: Sequelize.STRING,
   }, {
     instanceMethods: {
-      getLocations: function(onFind) {
-        models.Location.findAll().success(function(locations) {
-          console.log("Location Found: " + locations[0]);
-          onFind(locations[0]);
-        });
-      },
       getLastLocation: function() {
       },
     }
