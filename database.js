@@ -66,9 +66,10 @@ var models = {
           onFind([{Hello : "Goodbye"}]); 
         });
       },
-      getCar: function(onFind) {
-        console.log("In getCar");
-        this.getCars(function(cars) {
+      getCar: function(car_object,onFind) {
+        console.log("In getCar: " + car_object);
+        console.log("In getCar (Keys): " + Object.keys(car_object));
+        car_object.getCars(function(cars) {
           console.log("Get Cars Found something");
           if(cars.length > 0) {
             onFind(cars[0]); 
