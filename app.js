@@ -47,20 +47,7 @@ function addUser (source, sourceUser, promise) {
 }
 
 
-
-everyauth.everymodule
-  .findUserById( function (id, callback) {
-    console.log('Trying to find user by id: ' + id);
-    var db = app.get('db');
-    console.log("Database Object: " + db);
-    db.models.User.find(id).success( function(user) {
-      console.log("Success in lookup: " + user);
-      callback(undefined,user);
-    }).error(function(error){ 
-      console.log("Error in Lookup: " + error);
-      callback(error,undefined);
-    } );
-  });
+everyauth.debug = true;
 
 var usersByFbId = {};
 
@@ -97,6 +84,18 @@ everyauth.facebook
     });
 
     return promise;
+  })
+  .findUserById( function (req, id, callback) {
+    console.log('Trying to find user by id: ' + id);
+    var db = app.get('db');
+    console.log("Database Object: " + db);
+    db.models.User.find(id).success( function(user) {
+      console.log("Success in lookup: " + user);
+      callback(undefined,user);
+    }).error(function(error){ 
+      console.log("Error in Lookup: " + error);
+      callback(error,undefined);
+    } );
   });
 
 var app = express();
