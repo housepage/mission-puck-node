@@ -88,8 +88,8 @@ everyauth.facebook
       console.log("user: " + user);
       console.log("user (keys): " + Object.keys(user));
       if(user != undefined) {
-        user.getUser().success( function() {
-          promise.fulfill(user.user);
+        user.getUser().success( function(userFound) {
+          promise.fulfill(userFound);
         } );
       } else {
         addUser('facebook', fbUserMetadata, promise);
