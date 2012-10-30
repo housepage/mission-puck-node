@@ -49,7 +49,19 @@ function addUser (source, sourceUser, promise) {
 
 everyauth.debug = true;
 
-var usersByFbId = {};
+everyauth.everymodule.
+  .findUserById( function (req, id, callback) {
+    console.log('Trying to find user by id: ' + id);
+    var db = app.get('db');
+    console.log("Database Object: " + db);
+    db.models.User.find(id).success( function(user) {
+      console.log("Success in lookup: " + user);
+      callback(undefined,user);
+    }).error(function(error){ 
+      console.log("Error in Lookup: " + error);
+      callback(error,undefined);
+    } );
+  });
 
 /* Example Facebook User Object:
   {"id":"10508822","name":"Andrew Gall","first_name":"Andrew","last_name":"Gall","link":"http://www.facebook.com/housepage","username":"housepage","hometown":{"id":"111952012155701","name":"Marietta, Pennsylvania"},"location":{"id":"110843418940484","name":"Seattle, Washington"},"quotes":"\"Live truly and truly you are free\"\r\n-Andrew Gall\r\n\r\n\"Our lives begin to end the day we become silent about things that matter.\"\r\n- Martin Luther King Jr.\r\n\r\n\"Love truth, and pardon error.\"\r\n- Voltaire\r\n\r\n\"I wish I could apt-get a pizza\"\r\n-Talisha Lopez\r\n\r\n\"Happiness is a perfume you cannot pour on others without getting a few drops on yourself.\"\r\n- Ralph Waldo Emerson\r\n\r\n\"Sometimes it is said that man can not be trusted with the government of himself. Can he, then, be trusted with the government of others? Or have we found angels in the forms of kings to govern him? Let history answer this question.\"\r\n-Thomas Jeffersion (1st Inaugural Address)\r\n\r\n\"Before you embark on a journe
@@ -84,18 +96,6 @@ everyauth.facebook
     });
 
     return promise;
-  })
-  .findUserById( function (req, id, callback) {
-    console.log('Trying to find user by id: ' + id);
-    var db = app.get('db');
-    console.log("Database Object: " + db);
-    db.models.User.find(id).success( function(user) {
-      console.log("Success in lookup: " + user);
-      callback(undefined,user);
-    }).error(function(error){ 
-      console.log("Error in Lookup: " + error);
-      callback(error,undefined);
-    } );
   });
 
 var app = express();
