@@ -64,7 +64,7 @@ var models = {
           if(cars.length > 0) {
             onFind(cars[0]); 
           } else {
-            onFind({});
+            onFind(404);
           }
         });
       },
@@ -81,7 +81,14 @@ var models = {
     model: Sequelize.STRING,
   }, {
     instanceMethods: {
-      getLastLocation: function() {
+      getLastLocation: function(onFind) {
+        this.getLocations({ limit: 1, order: 'modifiedAt DESC' }).success( function(locations) {
+          if(locations.length > 0) {
+            onFind(locations[0]);
+          } else {
+            onFind(404);
+          }
+        });
       },
     }
   }),

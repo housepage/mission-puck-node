@@ -11,7 +11,8 @@
     "stylus": "*",
     "everyauth":"*",
     "pg":"0.7.2",
-    "sequelize":"latest"
+    "sequelize":"latest",
+    "node":"0.8.x"
   },
   "engines": {
     "node": "0.8.x",
