@@ -15,13 +15,13 @@
     <div id="current-location" data-role="page">
 
       <div data-role="header" id="map-header">
-        <h1>Current Car Location</h1>
+        <h1>Mark Parked</h1>
       </div><!-- /header -->
       
       <a class="switch_buttons" id="switch_to_mark_parked" data-role="button">Mark Parked</a>
       <a class="switch_buttons" style="display: none;" id="switch_to_current_location" data-role="button">View Current Location</a>
 
-      <div id="map" style="position: absolute; width: 100%; height: 90%;" data-role="content"> 
+      <div id="map" style="position: absolute; width: 100%; height: auto;" data-role="content"> 
          
       </div><!-- /content -->
     </div><!-- /page -->
@@ -132,7 +132,7 @@
               position.coords.longitude);
 
             var new_car_marker = new google.maps.Marker({
-              map: map,
+              map: mape
               position: current_pos, 
               draggable: true
             });
