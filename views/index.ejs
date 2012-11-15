@@ -146,7 +146,7 @@
         var switchControl = new SwitchControl(switchControlDiv, map);
         switchControlDiv.index = 1
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(switchControlDiv); */
-        map.checkResize();
+        google.maps.event.trigger(map, 'resize'); 
       }
       
       function setupCurrentLocation(map) {
