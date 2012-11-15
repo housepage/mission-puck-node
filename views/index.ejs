@@ -20,8 +20,10 @@
       
 
       <div id="main" style="width: 100%; height: 100%; position: absolute;" data-role="content">
+        <a class="switch_buttons" style="display: none;" id="switch_to_mark_parked" data-role="button">Mark Parked</a>
+        <a class="switch_buttons" id="switch_to_current_location" data-role="button">View Current Location</a>
 
-        <div id="map" style="width: 100%; height: 100%;"> 
+        <div id="map" style="width: 100%; height: 80%;"> 
         </div>
          
       </div><!-- /content -->
@@ -138,10 +140,10 @@
         map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(settingsControlDiv);
 
 
-        var switchControlDiv = document.createElement('div');
+        /* var switchControlDiv = document.createElement('div');
         var switchControl = new SwitchControl(switchControlDiv, map);
         switchControlDiv.index = 1
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(switchControlDiv);
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(switchControlDiv); */
 
 
         google.maps.event.trigger(map, 'resize'); 
