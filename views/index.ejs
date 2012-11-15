@@ -18,8 +18,8 @@
         <h1>Mark Parked</h1>
       </div><!-- /header -->
       
-      <a class="switch_buttons" id="switch_to_mark_parked" data-role="button">Mark Parked</a>
-      <a class="switch_buttons" style="display: none;" id="switch_to_current_location" data-role="button">View Current Location</a>
+      <a class="switch_buttons" style="display: none;" id="switch_to_mark_parked" data-role="button">Mark Parked</a>
+      <a class="switch_buttons" id="switch_to_current_location" data-role="button">View Current Location</a>
 
       <div id="map" style="position: absolute; width: 100%; height: auto;" data-role="content"> 
          
@@ -53,7 +53,7 @@
         });
       });
 
-      var map,state;
+      var map,state,parked_marker;
 
 
       /**
@@ -119,6 +119,7 @@
       function setupCurrentLocation(map) {
         $.mobile.loading('show'); 
 
+
         $.mobile.loading('hide'); 
       }
 
@@ -131,11 +132,15 @@
             var current_pos = new google.maps.LatLng(position.coords.latitude,
               position.coords.longitude);
 
-            var new_car_marker = new google.maps.Marker({
-              map: mape
-              position: current_pos, 
-              draggable: true
-            });
+            if(typeof mark_parked_marker !== undefined) {
+              mark_parked_marker.setMap(map);
+            } else {
+              mark_car_marker = new google.maps.Marker({
+                map: map,
+                position: current_pos, 
+                draggable: true
+              });
+            }
 
             map.setCenter(current_pos);
             $.mobile.loading('hide'); 
