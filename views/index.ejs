@@ -148,10 +148,10 @@
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(switchControlDiv); */
 
         var button_height = $('#switch_to_mark_parked').height();
-        
-        var remaining_height = parseInt($('#main').height() - button_height );
-        console.log("button height: " + button_height + " remaining height: " + remaining_height + " main height: " + $('#main').height()); 
-        $('#map').height(remaining_height);
+
+        var map_div = $('#map');
+        map_div.css('position','absolute');
+        map_div.css('top',button_height);
         google.maps.event.trigger(map, 'resize'); 
       }
       
