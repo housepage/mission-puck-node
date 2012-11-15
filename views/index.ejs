@@ -20,8 +20,6 @@
       
 
       <div id="main" style="width: 100%; height: 100%; position: absolute;" data-role="content">
-        <a class="switch_buttons" style="display: none;" id="switch_to_mark_parked" data-role="button">Mark Parked</a>
-        <a class="switch_buttons" id="switch_to_current_location" data-role="button">View Current Location</a>
 
         <div id="map" style="width: 100%; height: 100%;"> 
         </div>
@@ -97,6 +95,31 @@
           console.log("I clicked it");
         });
       }
+
+      function SwitchControl(controlDiv, map) {
+        // Set CSS styles for the DIV containing the control
+        // Setting padding to 5 px will offset the control
+        // from the edge of the map.
+        controlDiv.style.padding = '5px';
+        
+        var markControlUI = document.createElement('div');
+        markControlUI.style.display = "none";
+        markControlUI.data-role = "button";
+        markControlUI.class = "switch_buttons";
+        markControlUI.id = "switch_to_mark_parked";
+        markControlUI.innerHTML = "Mark Parked":
+        controlDiv.appendChild(markControlUI);
+        
+        var currentControlUI = document.createElement('div');
+        currentControlUI.data-role = "button";
+        currentControlUI.class = "switch_buttons";
+        currentControlUI.id = "switch_to_current_location";
+        currentControlUI.innerHTML = "View Current Location":
+        controlDiv.appendChild(currentControlUI);
+      }
+
+      <a class="switch_buttons" style="display: none;" id="switch_to_mark_parked" data-role="button">Mark Parked</a>
+      <a class="switch_buttons" id="switch_to_current_location" data-role="button">View Current Location</a>
       
       function initialize() {
         var mapOptions = {
@@ -116,6 +139,14 @@
 
         settingsControlDiv.index = 1;
         map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(settingsControlDiv);
+
+
+        var switchControlDiv = document.createElement('div');
+        var switchControl = new SwitchControl(switchControlDiv, map);
+        switchControlDiv.index = 1
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(switchControlDiv);
+
+
         //google.maps.event.trigger(map, 'resize'); 
       }
       
