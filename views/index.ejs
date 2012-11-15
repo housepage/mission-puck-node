@@ -111,7 +111,7 @@
         controlDiv.appendChild(markControlUI);
         
         var currentControlUI = document.createElement('div');
-        currentControlUI.data-role = "button";
+        currentControlUI['data-role'] = "button";
         currentControlUI.class = "switch_buttons";
         currentControlUI.id = "switch_to_current_location";
         currentControlUI.innerHTML = "View Current Location";
@@ -144,7 +144,7 @@
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(switchControlDiv);
 
 
-        //google.maps.event.trigger(map, 'resize'); 
+        google.maps.event.trigger(map, 'resize'); 
       }
       
       function setupCurrentLocation(map) {
