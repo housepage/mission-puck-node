@@ -132,7 +132,7 @@
             var current_pos = new google.maps.LatLng(position.coords.latitude,
               position.coords.longitude);
 
-            if(typeof mark_parked_marker !== undefined) {
+            if(mark_parked_marker !== undefined) {
               mark_parked_marker.setMap(map);
             } else {
               mark_car_marker = new google.maps.Marker({
