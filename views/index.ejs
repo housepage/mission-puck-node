@@ -107,20 +107,17 @@
         markControlUI.data-role = "button";
         markControlUI.class = "switch_buttons";
         markControlUI.id = "switch_to_mark_parked";
-        markControlUI.innerHTML = "Mark Parked":
+        markControlUI.innerHTML = "Mark Parked";
         controlDiv.appendChild(markControlUI);
         
         var currentControlUI = document.createElement('div');
         currentControlUI.data-role = "button";
         currentControlUI.class = "switch_buttons";
         currentControlUI.id = "switch_to_current_location";
-        currentControlUI.innerHTML = "View Current Location":
+        currentControlUI.innerHTML = "View Current Location";
         controlDiv.appendChild(currentControlUI);
       }
 
-      <a class="switch_buttons" style="display: none;" id="switch_to_mark_parked" data-role="button">Mark Parked</a>
-      <a class="switch_buttons" id="switch_to_current_location" data-role="button">View Current Location</a>
-      
       function initialize() {
         var mapOptions = {
           zoom: 17,
