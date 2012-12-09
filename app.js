@@ -41,7 +41,7 @@ function addUser (source, sourceUser, promise) {
       facebook.setUser(user);
       facebook.save()
         .success(function() { console.log("Successfully saved Facebook user"); promise.fulfill(user); })
-        .error(function(error) { console.log("Error in save of facebook user: " + error); });
+        .error(function(error) { console.log("Error in save of facebook user: " + error); user.destroy(); });
      })
     .error(function(error) { console.log("Error in save of user: " + error); });
 }
