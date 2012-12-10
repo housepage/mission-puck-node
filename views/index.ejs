@@ -75,13 +75,9 @@
 
         var button_height = $('#switch_to_mark_parked').height();
 
-        /*var map_div = $('#map');
-        map_div.css('position','absolute');
-        map_div.css('top',44);
-        map_div.css('bottom','3px');
-        map_div.css('left','3px');
-        map_div.css('right','3px'); */
         google.maps.event.trigger(map, 'resize');
+        var main_div = $('#main');
+        main_div.css('height',main_div.css('height') - 44);
       }
       
       function setupCurrentLocation(map) {
