@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , locations = require('./routes/locations')
+  , cars = require('./routes/cars')
   , http = require('http')
   , path = require('path')
   , everyauth = require('everyauth');
@@ -137,7 +138,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/settings', routes.settings);
 app.get('/parked', locations.parked);
-app.get('/car/add', routes.add_car);
+app.get('/car/add', cars.add_car);
 app.get('/users', user.list);
 
 
