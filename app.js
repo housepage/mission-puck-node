@@ -135,6 +135,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/settings', routes.settings);
 app.get('/parked', locations.parked);
 app.get('/users', user.list);
 
