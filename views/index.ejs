@@ -160,6 +160,9 @@
       
       function setupCurrentLocation(map) {
         $.mobile.loading('show'); 
+        if(mark_parked_marker !== undefined) {
+          mark_parked_marker.setMap(undefined);
+        }
 
 
         $.mobile.loading('hide'); 
