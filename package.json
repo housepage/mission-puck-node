@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "express": "latest",
-    "ejs": "*",
+    "ejs": "1.0",
     "stylus": "*",
     "everyauth":"*",
     "pg":"0.7.2",

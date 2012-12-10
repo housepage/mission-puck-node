@@ -4,6 +4,9 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Where My Car', car: '1998 Subaru Outback' }).update('#cars','/parked');
+  res.render('index', { title: 'Where My Car' });
 };
 
+exports.settings = function(req,res) {
+  res.render('settings', { title: 'Settings' });
+};
