@@ -21,7 +21,7 @@
         <div data-role="fieldcontain">
           <label for="make" class="select">Make:</label>
           <select name="make" id="make">
-            <% for(var i=0; i<makes.length; i++) {%>
+            <% for(var i=0; i < makes.length; i++) {%>
               <option value="<%= makes[i] %=>"><%= makes[i] %=></option>
             <% } %>
           </select>
@@ -29,7 +29,7 @@
         <div data-role="fieldcontain">
           <label for="model" class="select">Model:</label>
           <select name="model" id="model">
-            <% for(var i=0; i< models.length; i++) {%>
+            <% for(var i=0; i < models.length; i++) {%>
               <option value="<%= models[i] %=>"><%= models[i] %=></option>
             <% } %>
           </select>
@@ -37,7 +37,7 @@
         <div data-role="fieldcontain">
           <label for="year" class="select">Year:</label>
           <select name="year" id="year">
-            <% for(var i= new Date().getFullYear(); i > 1950; i--) {%>
+            <% for(var i = new Date().getFullYear(); 1950 < i; i--) {%>
               <option value="<%= i %=>"><%= i %=></option>
             <% } %>
           </select>
