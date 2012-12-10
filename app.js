@@ -137,6 +137,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/settings', routes.settings);
 app.get('/parked', locations.parked);
+app.get('/car/add', routes.add_car);
 app.get('/users', user.list);
 
 

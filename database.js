@@ -79,6 +79,7 @@ var models = {
   Car: sequelize.define('Car', {
     make: Sequelize.STRING,
     model: Sequelize.STRING,
+    year: Sequelize.INTEGER,
   }, {
     instanceMethods: {
       getLastLocation: function(onFind) {
