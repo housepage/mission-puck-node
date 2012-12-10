@@ -16,23 +16,26 @@
         <a href="/" class="ui-btn-left" data-icon="back">Return to App</a>
         <h1>Settings</h1>
       </div><!-- /header -->
-      <div data-role="collapsible-set">
 
-        <div data-role="collapsible" data-collapsed="false">
-          <h3>Cars</h3>
-          <ul data-role="listview">
-            <% for(var i=0; i<cars.length; i++) {%>
-              <li><%= cars[i] %></li>
-            <% } %>
-          </ul>
-          <a href="/car/add/" data-role="button" data-icon="add">Add a Car</a>
+      <div data-role="content">
+        <div data-role="collapsible-set">
+
+          <div data-role="collapsible" data-collapsed="false">
+            <h3>Cars</h3>
+            <ul data-role="listview">
+              <% for(var i=0; i<cars.length; i++) {%>
+                <li><%= cars[i] %></li>
+              <% } %>
+            </ul>
+            <a href="/car/add/" data-role="button" data-icon="add">Add a Car</a>
+          </div>
+          
+          <div data-role="collapsible">
+          <h3>Other Settings</h3>
+          <p>Vegetarian?</p>
+          </div>
+          
         </div>
-        
-        <div data-role="collapsible">
-        <h3>Other Settings</h3>
-        <p>Vegetarian?</p>
-        </div>
-        
       </div>
     </div>
   </body>

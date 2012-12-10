@@ -17,32 +17,34 @@
         <h1>Add a Car</h1>
       </div><!-- /header -->
 
-      <form action="/car/add/" method="post">
-        <div data-role="fieldcontain">
-          <label for="make" class="select">Make:</label>
-          <select name="make" id="make">
-            <% for(var i=0; i < makes.length; i++) { %>
-              <option value="<%= makes[i] %>"><%= makes[i] %></option>
-            <% } %>
-          </select>
-        </div>  
-        <div data-role="fieldcontain">
-          <label for="model" class="select">Model:</label>
-          <select name="model" id="model">
-            <% for(var i=0; i < models.length; i++) {%>
-              <option value="<%= models[i] %>"><%= models[i] %></option>
-            <% } %>
-          </select>
-        </div>  
-        <div data-role="fieldcontain">
-          <label for="year" class="select">Year:</label>
-          <select name="year" id="year">
-            <% for(var i = new Date().getFullYear(); i < 1950; i--) { %>
-              <option value="<%= i %>"><%= i %></option>
-            <% } %>
-          </select>
-        </div>  
-      </form>
+      <div data-role="content">
+        <form action="/car/add/" method="post">
+          <div data-role="fieldcontain">
+            <label for="make" class="select">Make:</label>
+            <select name="make" id="make">
+              <% for(var i=0; i < makes.length; i++) { %>
+                <option value="<%= makes[i] %>"><%= makes[i] %></option>
+              <% } %>
+            </select>
+          </div>  
+          <div data-role="fieldcontain">
+            <label for="model" class="select">Model:</label>
+            <select name="model" id="model">
+              <% for(var i=0; i < models.length; i++) {%>
+                <option value="<%= models[i] %>"><%= models[i] %></option>
+              <% } %>
+            </select>
+          </div>  
+          <div data-role="fieldcontain">
+            <label for="year" class="select">Year:</label>
+            <select name="year" id="year">
+              <% for(var i = new Date().getFullYear(); i < 1950; i--) { %>
+                <option value="<%= i %>"><%= i %></option>
+              <% } %>
+            </select>
+          </div>  
+        </form>
+      </div>
     </div>
   </body>
 </html>
