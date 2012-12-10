@@ -38,7 +38,7 @@
           <div data-role="fieldcontain">
             <label for="year" class="select">Year:</label>
             <select name="year" id="year">
-              <% for(var i = new Date().getFullYear(); i < 1950; i--) { %>
+              <% for(var i = new Date().getFullYear(); i > 1950; i--) { %>
                 <option value="<%= i %>"><%= i %></option>
               <% } %>
             </select>
