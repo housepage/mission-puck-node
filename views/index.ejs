@@ -62,67 +62,6 @@
       var map,state,mark_parked_marker;
 
 
-      /**
-       * The SettingsControl adds a control to that goes to the settings. 
-       * This constructor takes the control DIV as an argument.
-       */
-
-      function SettingsControl(controlDiv, map) {
-
-        // Set CSS styles for the DIV containing the control
-        // Setting padding to 5 px will offset the control
-        // from the edge of the map.
-        controlDiv.style.padding = '5px';
-
-        // Set CSS for the control border.
-        var controlUI = document.createElement('div');
-        controlUI.style.backgroundColor = 'white';
-        controlUI.style.borderStyle = 'solid';
-        controlUI.style.borderWidth = '2px';
-        controlUI.style.cursor = 'pointer';
-        controlUI.style.textAlign = 'center';
-        controlUI.title = 'Click to set the map to Home';
-        controlDiv.appendChild(controlUI);
-
-        // Set CSS for the control interior.
-        var controlText = document.createElement('div');
-        controlText.style.fontFamily = 'Arial,sans-serif';
-        controlText.style.fontSize = '12px';
-        controlText.style.paddingLeft = '4px';
-        controlText.style.paddingRight = '4px';
-        controlText.innerHTML = '<strong>Home</strong>';
-        controlUI.appendChild(controlText);
-
-        
-
-        // Setup the click event listeners: simply set the map to Chicago.
-        google.maps.event.addDomListener(controlUI, 'click', function() {
-          console.log("I clicked it");
-        });
-      }
-
-      function SwitchControl(controlDiv, map) {
-        // Set CSS styles for the DIV containing the control
-        // Setting padding to 5 px will offset the control
-        // from the edge of the map.
-        controlDiv.style.padding = '5px';
-        
-        var markControlUI = document.createElement('div');
-        markControlUI.style.display = "none";
-        markControlUI['data-role'] = "button";
-        markControlUI.class = "switch_buttons";
-        markControlUI.id = "switch_to_mark_parked";
-        markControlUI.innerHTML = "Mark Parked";
-        controlDiv.appendChild(markControlUI);
-        
-        var currentControlUI = document.createElement('div');
-        currentControlUI['data-role'] = "button";
-        currentControlUI.class = "switch_buttons";
-        currentControlUI.id = "switch_to_current_location";
-        currentControlUI.innerHTML = "View Current Location";
-        controlDiv.appendChild(currentControlUI);
-      }
-
       function initialize() {
         var mapOptions = {
           zoom: 17,
@@ -134,29 +73,15 @@
         
         setupMarkCarLocation(map);
 
-        // Create the DIV to hold the control and call the HomeControl() constructor
-        // passing in this DIV.
-        var settingsControlDiv = document.createElement('div');
-        var settingsControl = new SettingsControl(settingsControlDiv, map);
-
-        settingsControlDiv.index = 1;
-        map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(settingsControlDiv);
-
-
-        /* var switchControlDiv = document.createElement('div');
-        var switchControl = new SwitchControl(switchControlDiv, map);
-        switchControlDiv.index = 1
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(switchControlDiv); */
-
         var button_height = $('#switch_to_mark_parked').height();
 
-        var map_div = $('#map');
+        /*var map_div = $('#map');
         map_div.css('position','absolute');
         map_div.css('top',87 + 44);
         map_div.css('bottom','3px');
         map_div.css('left','3px');
         map_div.css('right','3px');
-        google.maps.event.trigger(map, 'resize'); 
+        google.maps.event.trigger(map, 'resize'); */
       }
       
       function setupCurrentLocation(map) {
