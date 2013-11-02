@@ -25,9 +25,11 @@ unless global.hasOwnProperty("db")
     Sequelize: Sequelize
     sequelize: sequelize
     User: sequelize.import(__dirname + "/user")
+    Car: sequelize.import(__dirname + "/car")
+    Location: sequelize.import(__dirname + "/location")
     # add your other models here
 
-  #    Associations can be defined here. E.g. like this:
-  #    global.db.User.hasMany(global.db.SomethingElse)
+    global.db.User.hasMany(global.db.Car)
+    global.db.Car.hasMany(globals.db.Location)
 
 module.exports = global.db
