@@ -3,19 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "coffee app.coffee"
   },
   "dependencies": {
-    "express": "latest",
-    "ejs": "latest",
-    "stylus": "*",
-    "everyauth":"*",
-    "pg":"2.5.x",
-    "sequelize":"latest",
-    "mustache-express":"0.2.2"
+    "express": "3.3.8",
+    "stylus": "~0.37.0",
+    "everyauth": "~0.4.5",
+    "pg": "~2.5.1",
+    "sequelize": "~2.0.0-beta.0",
+    "mustache-express": "0.2.2",
+    "coffee-script-redux": "2.0.0-beta7"
   },
   "engines": {
     "node": "0.10.x",
-    "npm": "1.3.x"
+    "npm": "1.3.x",
+    "coffee-script-redux": ""
   }
 }

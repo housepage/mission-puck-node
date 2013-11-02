@@ -4,9 +4,5 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Where My Car' });
-};
-
-exports.settings = function(req,res) {
-  res.render('settings', { title: 'Settings', cars: [] });
+  res.render('index', { title: 'Express' });
 };
