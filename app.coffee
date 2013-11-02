@@ -19,6 +19,7 @@ app.engine 'mustache', mustacheExpress()
 app.set "port", process.env.PORT or 3000
 app.set "views", __dirname + "/views"
 app.set "view engine", "mustache"
+app.use require("connect-assets")()
 app.use express.favicon()
 app.use express.logger("dev")
 app.use express.bodyParser()
@@ -33,6 +34,9 @@ app.use express.static(path.join(__dirname, "public"))
 app.use express.errorHandler()  if "development" is app.get("env")
 app.get "/", routes.index
 app.get "/users", user.list
+
+app.locals
+  js: () -> global.js
 
 db.sequelize.sync().complete (err) ->
   if err
