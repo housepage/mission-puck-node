@@ -1,38 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css' />
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.css" />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
-    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
+    <title>{{ title }}</title>
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script>
+    <script src="/javascripts/angular-leaflet-directive.js"></script>
+    {#js}map_initialize{/js}
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
   <body>
-    <div id="current-location" data-role="page">
-
-      <div data-role="header" id="map-header">
-        <a class="switch_buttons ui-btn-left" style="display: none;" id="switch_to_mark_parked" data-icon="forward">Mark Parked</a>
-        <a class="switch_buttons ui-btn-left" id="switch_to_current_location" data-icon="back">View Current Location</a>
-        <a href="/settings" data-icon="gear" class="ui-btn-right">Settings</a>
-        <h1>Mark Parked</h1>
-      </div><!-- /header -->
-      <div id="main" data-role="content">
-
-        <div id="map"> 
-        </div>
-
-        <div id="cars">
-
-        </div>
-      </div><!-- /content -->
-    </div><!-- /page -->
-
-    {{#js}}map_initialize{{/js}}
   </body>
 </html>

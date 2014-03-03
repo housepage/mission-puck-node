@@ -1,0 +1,3 @@
+[submodule "lib/angular-leaflet-directive"]
+	path = lib/angular-leaflet-directive
+	url = git://github.com/tombatossals/angular-leaflet-directive.git

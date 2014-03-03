@@ -10,6 +10,7 @@ express = require("express")
 http = require("http")
 mustacheExpress = require("mustache-express")
 path = require("path")
+{reduce, pairs} = require "underscore"
 
 app = express()
 
@@ -19,7 +20,14 @@ app.engine 'mustache', mustacheExpress()
 app.set "port", process.env.PORT or 3000
 app.set "views", __dirname + "/views"
 app.set "view engine", "mustache"
+
+helpersFromConnectAssets = {}
+
 app.use require("connect-assets")()
+
+
+console.log "#{app.locals.js}"
+
 app.use express.favicon()
 app.use express.logger("dev")
 app.use express.bodyParser()
@@ -33,10 +41,10 @@ app.use express.static(path.join(__dirname, "public"))
 # development only
 app.use express.errorHandler()  if "development" is app.get("env")
 app.get "/", routes.index
-app.get "/users", user.list
 
 app.locals
   js: () -> global.js
+  css: () -> global.css
 
 db.sequelize.sync().complete (err) ->
   if err
