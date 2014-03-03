@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="demoapp">
   <head>
     <title>{{ title }}</title>
 
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
 
-    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script>
-    <script src="/javascripts/angular-leaflet-directive.js"></script>
-    {#js}map_initialize{/js}
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    {{#js}}angular-leaflet-directive{{/js}}
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
+    {{#js}}map_initialize{{/js}}
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
-  <body>
+  <body ng-controller="SimpleMapController">
+    <leaflet></leaflet>
   </body>
 </html>

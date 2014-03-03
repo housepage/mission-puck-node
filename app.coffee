@@ -25,9 +25,6 @@ helpersFromConnectAssets = {}
 
 app.use require("connect-assets")()
 
-
-console.log "#{app.locals.js}"
-
 app.use express.favicon()
 app.use express.logger("dev")
 app.use express.bodyParser()
