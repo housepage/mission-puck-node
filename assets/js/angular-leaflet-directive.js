@@ -1,0 +1,1 @@
+../../lib/angular-leaflet-directive/dist/angular-leaflet-directive.js
