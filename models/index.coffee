@@ -15,7 +15,7 @@ unless global.hasOwnProperty("db")
     } )
   else
     # the application is executed on the local machine ... use mysql
-    sequelize = new Sequelize "locate-my-car-test", "locate-my-car", "locate",
+    sequelize = new Sequelize "skeletool-node-webapp-test", "skeletal-node-webapp", "locate",
       dialect: "postgres"
       protocol: "postgres"
       logging: true #false
